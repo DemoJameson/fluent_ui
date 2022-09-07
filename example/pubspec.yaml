@@ -41,3 +41,6 @@ flutter:
 flutter_native_splash:
   color: "#42a5f5"
   image: web/assets/flutter_logo.png
+
+flutter_intl:
+  enabled: true

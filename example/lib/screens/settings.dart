@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:example/generated/l10n.dart' as l10n;
 import 'package:fluent_ui/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 
@@ -225,7 +226,7 @@ class Settings extends ScrollablePage {
           ),
         );
       }).reversed,
-      Text('Locale', style: FluentTheme.of(context).typography.subtitle),
+      Text(l10n.S.of(context).settingLocale, style: FluentTheme.of(context).typography.subtitle),
       spacer,
       Wrap(
         spacing: 15.0,

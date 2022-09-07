@@ -1,3 +1,4 @@
+import 'package:example/generated/l10n.dart';
 import 'package:example/screens/surface/tiles.dart';
 import 'package:example/widgets/page.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Page;
@@ -97,6 +98,10 @@ class MyApp extends StatelessWidget {
           themeMode: appTheme.mode,
           debugShowCheckedModeBanner: false,
           color: appTheme.color,
+          localizationsDelegates: const[
+            S.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
           darkTheme: ThemeData(
             brightness: Brightness.dark,
             accentColor: appTheme.color,
