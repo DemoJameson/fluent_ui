@@ -175,7 +175,7 @@ class _ComboBoxItemButtonState<T> extends State<_ComboBoxItemButton<T>> {
               decoration: BoxDecoration(
                 color: ButtonThemeData.uncheckedInputColor(
                   theme,
-                  states.isFocused ? {ButtonStates.hovering} : states,
+                  states.isFocused ? {WidgetState.hovered} : states,
                   transparentWhenNone: true,
                 ),
                 borderRadius: BorderRadius.circular(4.0),
@@ -187,8 +187,8 @@ class _ComboBoxItemButtonState<T> extends State<_ComboBoxItemButton<T>> {
               AnimatedPositionedDirectional(
                 duration: theme.fastAnimationDuration,
                 curve: theme.animationCurve,
-                top: states.isPressing ? 10.0 : 8.0,
-                bottom: states.isPressing ? 10.0 : 8.0,
+                top: states.isPressed ? 10.0 : 8.0,
+                bottom: states.isPressed ? 10.0 : 8.0,
                 child: Container(
                   width: 3.0,
                   decoration: BoxDecoration(
@@ -761,13 +761,13 @@ class _ComboBoxItemContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = FluentTheme.of(context);
     final hasPadding = _ContainerWithoutPadding.of(context) == null;
-    final state = HoverButton.maybeOf(context)?.states ?? <ButtonStates>{};
+    final state = HoverButton.maybeOf(context)?.states ?? <WidgetState>{};
 
     final foregroundColor = state.isDisabled
         ? theme.resources.textFillColorDisabled
-        : state.isPressing
+        : state.isPressed
             ? theme.resources.textFillColorTertiary
-            : state.isHovering
+            : state.isHovered
                 ? theme.resources.textFillColorSecondary
                 : theme.resources.textFillColorPrimary;
 
@@ -1236,7 +1236,7 @@ class ComboBoxState<T> extends State<ComboBox<T>> {
 
       final state = HoverButton.of(context).states;
 
-      if (state.isPressing) {
+      if (state.isPressed) {
         return res.textFillColorTertiary;
       }
 
@@ -1350,7 +1350,8 @@ class ComboBoxState<T> extends State<ComboBox<T>> {
           onPressed: isEnabled ? openPopup : null,
           autofocus: widget.autofocus,
           focusNode: focusNode,
-          style: ButtonStyle(padding: ButtonState.all(EdgeInsets.zero)),
+          style: const ButtonStyle(
+              padding: WidgetStatePropertyAll(EdgeInsets.zero)),
           child: result,
         ),
       ),
